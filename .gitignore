@@ -77,3 +77,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+TP_OrfeasPaper2DSideScroller/Binaries
+TP_OrfeasPaper2DSideScroller/Intermediate
+TP_OrfeasPaper2DSideScroller/Saved
+TP_OrfeasPaper2DSideScroller/Paper2DCpp.VC.db
