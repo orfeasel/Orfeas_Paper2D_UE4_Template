@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+//Orfeas Eleftheriou FSM Plugin 2017
 
 #pragma once
 
@@ -12,15 +12,30 @@ class FINITESTATEMACHINEPLUGIN_API UFiniteStateMachineComponent : public UActorC
 {
 	GENERATED_BODY()
 
-public:	
+private:
+
+	class UStateBase* CurrentState;
+	class UStateBase* PreviousState;
+
+public:
 	// Sets default values for this component's properties
 	UFiniteStateMachineComponent();
+
+	/**
+	* Searches the neighbors of the current state and switches to the given state
+	* if possiblegit
+	* @param StateName - the name of the state
+	*/
+	virtual void SwitchState(const FString& StateName);
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:	
+	UPROPERTY(EditDefaultsOnly, Category = FSM)
+	TArray<class UStateBase*> States;
+
+public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 

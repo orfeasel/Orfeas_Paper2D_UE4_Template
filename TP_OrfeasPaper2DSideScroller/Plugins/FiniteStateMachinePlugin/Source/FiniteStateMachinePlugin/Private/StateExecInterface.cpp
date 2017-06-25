@@ -1,11 +1,8 @@
 // Orfeas Eleftheriou FSM Plugin 2017
 
 #include "StateExecInterface.h"
+#include "FiniteStateMachinePlugin.h"
 
-StateExecInterface::StateExecInterface()
-{
-}
-
-StateExecInterface::~StateExecInterface()
+UStateExec::UStateExec(const class FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
 }
