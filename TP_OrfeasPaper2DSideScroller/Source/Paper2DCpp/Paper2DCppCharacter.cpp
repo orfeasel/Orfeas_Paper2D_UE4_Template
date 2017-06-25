@@ -81,6 +81,24 @@ APaper2DCppCharacter::APaper2DCppCharacter()
 	bReplicates = true;
 }
 
+bool APaper2DCppCharacter::IsInAir() const
+{
+	const FVector Velocity = GetVelocity();
+	return FMath::Abs(Velocity.Z) >= KINDA_SMALL_NUMBER;
+}
+
+bool APaper2DCppCharacter::IsWalking() const
+{
+	const FVector Velocity = GetVelocity();
+	return (Velocity.Size() > 0);
+}
+
+bool APaper2DCppCharacter::IsIdle() const
+{
+	const FVector Velocity = GetVelocity();
+	return FMath::Abs(Velocity.X) <= KINDA_SMALL_NUMBER;
+}
+
 //////////////////////////////////////////////////////////////////////////
 // Animation
 
@@ -114,7 +132,7 @@ void APaper2DCppCharacter::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 	
 	// Update animation to match the motion
-	UpdateAnimation();
+	//UpdateAnimation();
 
 	UpdateCharacter();	
 }

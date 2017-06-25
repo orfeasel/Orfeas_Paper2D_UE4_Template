@@ -62,4 +62,10 @@ public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 
+	bool IsInAir() const;
+
+	bool IsWalking() const;
+
+	bool IsIdle() const;
+
 };
