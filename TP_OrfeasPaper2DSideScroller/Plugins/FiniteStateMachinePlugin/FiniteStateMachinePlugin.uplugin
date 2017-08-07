@@ -11,12 +11,12 @@
 	"MarketplaceURL": "",
 	"SupportURL": "",
 	"CanContainContent": true,
-	"IsBetaVersion": false,
-	"Installed": false,
+	"IsBetaVersion": true,
+	"Installed": true,
 	"Modules": [
 		{
 			"Name": "FiniteStateMachinePlugin",
-			"Type": "Developer",
+			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		}
 	]

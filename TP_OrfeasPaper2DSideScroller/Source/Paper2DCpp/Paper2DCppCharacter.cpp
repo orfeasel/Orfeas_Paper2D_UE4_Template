@@ -65,11 +65,6 @@ APaper2DCppCharacter::APaper2DCppCharacter()
 	// behavior on the edge of a ledge versus inclines by setting this to true or false
 	GetCharacterMovement()->bUseFlatBaseForFloorChecks = true;
 
-
-	PaperCharacterAnimationComponent = CreateDefaultSubobject<UAnimationComponent>(FName("AnimationComponent"));
-
-
-
     // 	TextComponent = CreateDefaultSubobject<UTextRenderComponent>(TEXT("IncarGear"));
     // 	TextComponent->SetRelativeScale3D(FVector(3.0f, 3.0f, 3.0f));
     // 	TextComponent->SetRelativeLocation(FVector(35.0f, 5.0f, 20.0f));
@@ -102,38 +97,10 @@ bool APaper2DCppCharacter::IsIdle() const
 //////////////////////////////////////////////////////////////////////////
 // Animation
 
-void APaper2DCppCharacter::UpdateAnimation()
-{
-	const FVector PlayerVelocity = GetVelocity();
-	const float PlayerSpeedSqr = PlayerVelocity.SizeSquared();
-
-	//Are we moving or standing still?
-	if (PaperCharacterAnimationComponent)
-	{
-		if (FMath::Abs(PlayerVelocity.Z)>0.f)
-		{
-			PaperCharacterAnimationComponent->PlayAnimation(EAnimationState::AS_JUMP);
-			return;
-		}
-
-		if (PlayerSpeedSqr > 0.f)
-		{
-			PaperCharacterAnimationComponent->PlayAnimation(EAnimationState::AS_RUNNING);
-		}
-		else
-		{
-			PaperCharacterAnimationComponent->PlayAnimation(EAnimationState::AS_IDLE);
-		}
-	}
-}
-
 void APaper2DCppCharacter::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	
-	// Update animation to match the motion
-	//UpdateAnimation();
-
 	UpdateCharacter();	
 }
 

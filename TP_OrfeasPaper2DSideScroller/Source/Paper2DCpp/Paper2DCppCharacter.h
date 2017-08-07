@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "PaperCharacter.h"
-#include "AnimationComponent.h"
 #include "Paper2DCppCharacter.generated.h"
 
 class UTextRenderComponent;
@@ -38,12 +37,6 @@ private:
 	bool bIsJumping;
 
 protected:
-
-	UPROPERTY(VisibleAnywhere)
-	UAnimationComponent* PaperCharacterAnimationComponent;
-
-	/** Called to choose the correct animation to play based on the character's movement state */
-	void UpdateAnimation();
 
 	/** Called for side to side input */
 	void MoveRight(float Value);

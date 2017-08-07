@@ -18,6 +18,10 @@
 		{
 			"Name": "Paper2D",
 			"Enabled": true
+		},
+		{
+			"Name": "FiniteStateMachinePlugin",
+			"Enabled": true
 		}
 	]
 }
