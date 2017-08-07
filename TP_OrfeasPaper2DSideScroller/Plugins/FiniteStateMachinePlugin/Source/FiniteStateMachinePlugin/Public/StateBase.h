@@ -25,6 +25,8 @@ public:
 	 */
 	bool IsNeighborWith(const FString& OtherStateName, UStateBase*& EditorAsset) const;
 
+	virtual void PostEditChangeProperty(struct FPropertyChangedEvent& PropertyChangedEvent) override;
+
 	bool operator==(const UStateBase& Rhs) const;
 
 	FString GetStateName() const;
