@@ -11,7 +11,7 @@ void FFiniteStateMachinePluginModule::StartupModule()
 
 	GLog->Log("FSM module has awaken");
 
-	StyleSet = MakeShareable(new FSlateStyleSet("OrfeasAnimStyleSet"));
+	/*StyleSet = MakeShareable(new FSlateStyleSet("OrfeasAnimStyleSet"));
 
 	FString ContentDir = IPluginManager::Get().FindPlugin("FiniteStateMachinePlugin")->GetBaseDir();
 
@@ -30,12 +30,12 @@ void FFiniteStateMachinePluginModule::StartupModule()
 	else
 	{
 		GLog->Log("brush is invalid");
-	}
+	}*/
 }
 
 void FFiniteStateMachinePluginModule::ShutdownModule()
 {
-	FSlateStyleRegistry::UnRegisterSlateStyle(StyleSet->GetStyleSetName());
+	//FSlateStyleRegistry::UnRegisterSlateStyle(StyleSet->GetStyleSetName());
 
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.

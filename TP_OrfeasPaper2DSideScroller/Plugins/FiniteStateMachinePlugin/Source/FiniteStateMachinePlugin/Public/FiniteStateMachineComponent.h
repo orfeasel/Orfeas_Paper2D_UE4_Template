@@ -22,10 +22,10 @@ public:
 	UFiniteStateMachineComponent();
 
 	/**
-	* Searches the neighbors of the current state and switches to the given state
-	* if possiblegit
-	* @param StateName - the name of the state
-	*/
+	 * Searches the neighbors of the current state and switches to the given state
+	 * if possible
+	 * @param StateName - the name of the state
+	 */
 	virtual void SwitchState(const FString& StateName);
 
 protected:
@@ -33,7 +33,10 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditDefaultsOnly, Category = FSM)
-	TArray<class UStateBase*> States;
+	class UStateBase* EntryState;
+
+	/*UPROPERTY(EditDefaultsOnly, Category = FSM)
+	TArray<class UStateBase*> States;*/
 
 public:
 	// Called every frame

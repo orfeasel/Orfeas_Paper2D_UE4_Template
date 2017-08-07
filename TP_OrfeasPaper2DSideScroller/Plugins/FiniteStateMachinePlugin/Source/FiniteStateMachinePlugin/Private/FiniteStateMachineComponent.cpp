@@ -4,6 +4,9 @@
 #include "FiniteStateMachinePlugin.h"
 #include "StateBase.h"
 
+
+DEFINE_LOG_CATEGORY_STATIC(FiniteStateMachineComponent, Log, All);
+
 // Sets default values for this component's properties
 UFiniteStateMachineComponent::UFiniteStateMachineComponent()
 {
@@ -17,7 +20,7 @@ UFiniteStateMachineComponent::UFiniteStateMachineComponent()
 
 void UFiniteStateMachineComponent::SwitchState(const FString& StateName)
 {
-	for (int32 index = 0; index < States.Num(); index++)
+	/*for (int32 index = 0; index < States.Num(); index++)
 	{
 		UStateBase* TempState = (States[index]);
 
@@ -37,14 +40,35 @@ void UFiniteStateMachineComponent::SwitchState(const FString& StateName)
 			}
 			else
 			{
-				//todo warnings
-				GLog->Log("NEW STATE IS NULL M8");
+				UE_LOG(FiniteStateMachineComponent, Error, TEXT("Current State is null"));
 			}
 
 			return;
 		}
+	}*/
+
+	UStateBase* NewState = nullptr;
+	//UE_LOG(FiniteStateMachineComponent, Warning, TEXT("Switching state#1"));
+	if (CurrentState && CurrentState->IsNeighborWith(StateName, NewState))
+	{
+		if (NewState)
+		{
+			CurrentState->OnExit(*this);
+
+			PreviousState = CurrentState;
+
+			CurrentState = NewState;
+			CurrentState->OnEnter(*this);
+
+			//UE_LOG(FiniteStateMachineComponent, Warning, TEXT("Switching state"));
+		}
+		else
+		{
+			UE_LOG(FiniteStateMachineComponent, Error, TEXT("Couldn't locate neighbor. Have you assigned the corresponding State In-Editor?"));
+		}
 	}
-	GLog->Log("CAN'T FIND NEIGHBOR");
+
+	//UE_LOG(FiniteStateMachineComponent, Warning, TEXT("Couldn't locate neighbor"));
 	//todo: add warning couldn't switch states
 }
 
@@ -53,24 +77,34 @@ void UFiniteStateMachineComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (States.IsValidIndex(0))
+	if (EntryState)
 	{
-		CurrentState = States[0];
-		if (CurrentState)
-		{
-			CurrentState->OnEnter(*this);
-			GLog->Log("valid state, started executing");
-		}
-
-		else
-		{
-			GLog->Log("invalid state");
-		}
+		CurrentState = EntryState;
+		CurrentState->OnEnter(*this);
 	}
 	else
 	{
-		GLog->Log("invalid state");
+		UE_LOG(FiniteStateMachineComponent, Error, TEXT("Invalid entry state. Have you assigned one on the Component?"));
 	}
+
+	//if (States.IsValidIndex(0))
+	//{
+	//	CurrentState = States[0];
+	//	if (CurrentState)
+	//	{
+	//		CurrentState->OnEnter(*this);
+	//		//GLog->Log("valid state, started executing");
+	//	}
+	//	else
+	//	{
+	//		UE_LOG(FiniteStateMachineComponent, Error, TEXT("Invalid entry state"));
+	//		GLog->Log("invalid state");
+	//	}
+	//}
+	//else
+	//{
+	//	GLog->Log("invalid state");
+	//}
 	//todo: add warning for missing states
 
 }

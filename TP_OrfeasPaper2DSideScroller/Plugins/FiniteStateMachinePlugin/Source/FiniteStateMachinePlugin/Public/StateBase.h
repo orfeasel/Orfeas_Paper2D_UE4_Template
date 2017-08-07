@@ -18,11 +18,11 @@ class FINITESTATEMACHINEPLUGIN_API UStateBase : public UObject, public IStateExe
 public:
 
 	/**
-	* Searches the neighbors of the state to determine if the given state is an actual neighbor
-	* @param OtherStateName - State name to check for neighborhood
-	* @param EditorAsset - the EditorAsset containing the neighbor State
-	* @return true - if the states are related
-	*/
+	 * Searches the neighbors of the state to determine if the given state is an actual neighbor
+	 * @param OtherStateName - State name to check for neighborhood
+	 * @param EditorAsset - the EditorAsset containing the neighbor State
+	 * @return true - if the states are related
+	 */
 	bool IsNeighborWith(const FString& OtherStateName, UStateBase*& EditorAsset) const;
 
 	bool operator==(const UStateBase& Rhs) const;
