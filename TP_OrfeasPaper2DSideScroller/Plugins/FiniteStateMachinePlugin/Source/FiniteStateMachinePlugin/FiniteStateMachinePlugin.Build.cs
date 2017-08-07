@@ -42,7 +42,8 @@ public class FiniteStateMachinePlugin : ModuleRules
 				"SlateCore",
                 "Paper2D",
                 "UnrealEd",
-                "AssetTools"
+                "AssetTools",
+                "Projects"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);
