@@ -13,6 +13,8 @@ void UCharacterIdleState::OnExecute(class UFiniteStateMachineComponent* OwnerCom
 		return;
 	}
 
+	
+
 	APaper2DCppCharacter* OwnerActor = Cast<APaper2DCppCharacter>(OwnerComp->GetOwner());
 
 	if (OwnerActor)

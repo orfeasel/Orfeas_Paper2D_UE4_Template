@@ -15,6 +15,8 @@ void UCharacterJumpState::OnExecute(class UFiniteStateMachineComponent* OwnerCom
 
 	APaper2DCppCharacter* OwnerActor = Cast<APaper2DCppCharacter>(OwnerComp->GetOwner());
 
+	GLog->Log("executing jump state");
+
 	if (OwnerActor)
 	{
 		if (OwnerActor->IsInAir())
@@ -25,11 +27,15 @@ void UCharacterJumpState::OnExecute(class UFiniteStateMachineComponent* OwnerCom
 		if (OwnerActor->IsIdle())
 		{
 			OwnerComp->SwitchState("Idle");
+
+			GLog->Log("idle from jump state");
 		}
 
 		if (OwnerActor->IsWalking())
 		{
 			OwnerComp->SwitchState("Walking");
+
+			GLog->Log("walk from jump state");
 		}
 	}
 }
