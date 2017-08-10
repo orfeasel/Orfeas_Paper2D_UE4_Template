@@ -36,8 +36,26 @@ void UStateBase::PostEditChangeProperty(struct FPropertyChangedEvent& PropertyCh
 
 		if (NeighborState)
 		{
-			NeighborState->Neighbors.AddUnique(this);
+			//Check if we have one - way neighborhood in order to edit the other asset as well
+			bool bOneWayNeighbor = true;
+
+			for (int32 OneWayNeighborIndex = 0; OneWayNeighborIndex < NeighborState->Neighbors.Num(); OneWayNeighborIndex++)
+			{
+				if (NeighborState->Neighbors[OneWayNeighborIndex]->GetStateName().Equals(StateName, ESearchCase::IgnoreCase))
+				{
+					bOneWayNeighbor = false;
+				}
+			}
+
+			//Since we're modifying an Editor Asset let's mark it as dirty
+			if (bOneWayNeighbor)
+			{
+				NeighborState->Neighbors.Add(this);
+				NeighborState->MarkPackageDirty();
+			}
+
 		}
+
 	}
 }
 
